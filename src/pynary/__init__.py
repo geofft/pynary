@@ -4,23 +4,12 @@ from typing import Self
 import construct
 
 
-class _Annotations(dict):
-    """A mapping that is __annotations__ in the body of a Pynary class."""
-
-    def __init__(self, body: "_Body"):
-        super().__init__()
-        self.__body = body
-
-    def __setitem__(self, key, value):
-        super().__setitem__(key, value)
-
-
 class _Body(dict):
     """A mapping in which the body of a Pynary class is evaluted."""
 
     def __init__(self):
         super().__init__()
-        self["__annotations__"] = _Annotations(self)
+        self["__annotations__"] = {}
 
     def __setitem__(self, key, value):
         super().__setitem__(key, value)
